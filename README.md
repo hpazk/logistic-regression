@@ -33,7 +33,7 @@ Dimana:
 
 Seseorang akan membeli setelah melihat iklan sebuah produk.
 
-dataset diambil dari [Social Nework Ads](https://www.kaggle.com/dragonheir/logistic-regression) 
+dataset diambil dari [Social Nework Ads](https://www.kaggle.com/dragonheir/logistic-regression)
 
 Langkah-langkah:
 
