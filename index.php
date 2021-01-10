@@ -31,12 +31,17 @@ function getClassModel($raw_data)
     return $raw_data;
 }
 
-function getExpectedVariable($raw_data, $label)
+function getExpectedVariable($raw_data, $label = null)
 {
     $tmp = array();
 
     for ($i = 0; $i < sizeof($raw_data); $i++) {
-        array_push($tmp, ($raw_data[$i][$label]));
+        if ($label) {
+
+            array_push($tmp, ($raw_data[$i][$label]));
+        } else {
+            array_push($tmp, ($raw_data[$i][sizeof($raw_data[$i]) - 1]));
+        }
     }
 
     return $tmp;
@@ -82,6 +87,24 @@ $raw_data[0] = $prequisites;
 $raw_data[1] = $expected;
 
 
-$prediction = new LogisticRegression($raw_data);
+$logit = new LogisticRegression($raw_data);
 
-printf("Correctness = %.0f%%\n", $prediction->correctness());
+printf('Correctness = %.0f%%', $logit->correctness());
+echo PHP_EOL;
+
+echo 'Prediction:';
+
+$preqtest = array(
+
+    array(35, 20000, 1),
+    array(26, 43000, 0),
+    array(27, 57000, 0),
+    array(19, 76000, 1),
+    array(32, 150000, 0),
+    array(45, 135000, 0),
+    array(28, 78000, 1),
+    array(29, 65000, 0),
+    array(19, 150000, 1),
+);
+
+$logit->prediction($preqtest);

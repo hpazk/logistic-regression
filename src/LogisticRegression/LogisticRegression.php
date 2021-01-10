@@ -66,11 +66,11 @@ class LogisticRegression
 
         for ($i = 0; $i < $this->len_samples; $i++) {
             $predict = $this->predict($this->scale($this->data_training[$i], $this->scaling), $weights);
-            // printf("Input: %-16s actual: %d, predict: %d", $this->vector_to_str($this->data_training[$i]), $this->labels[$i], $predict);
+            // printf('Input: %-16s actual: %d, predict: %d', $this->vector_to_str($this->data_training[$i]), $this->labels[$i], $predict);
             // if ($this->labels[$i] != $predict) {
-            //     print(" - miss");
+            //     print(' - miss');
             // }
-            // print("\n");
+            // print('\n');
 
             if ($predict == $this->labels[$i]) {
                 $this->correct++;
@@ -78,6 +78,28 @@ class LogisticRegression
         }
 
         return $this->correct / $this->len_samples * 100.0;
+    }
+
+    public function prediction($preqtest)
+    {
+        $weights = $this->gradient_descent();
+        // $input = array();
+        $P = array();
+
+        for ($i = 0; $i < sizeof($preqtest); $i++) {
+            $predict = $this->predict($this->scale($preqtest[$i], $this->scaling), $weights);
+
+            // printf('Input: %-16s predict: %d', $this->vector_to_str($preqtest[$i]), $this->labels[$i], $predict);
+
+            // array_push($input, sprintf('%-16s', $this->vector_to_str($preqtest[$i])));
+            array_push($P, sprintf('%d', $predict));
+            // if ($predict == $this->labels[$i]) {
+            //     $this->correct++;
+            // }
+        }
+        print_r($P);
+
+        // return $this->correct / $this->len_samples * 100.0;
     }
 
     public function predict($input, $weights)
@@ -121,33 +143,37 @@ class LogisticRegression
         $mins = array_fill(0, $this->len_features, INF);
         $maxs = array_fill(0, $this->len_features, -INF);
         $sums = array_fill(0, $this->len_features, 0);
-        $scaling = array(
+        $scalings = array(
             'mean' => array(),
             'variance' => array()
         );
         $N = sizeof($data);
         foreach ($data as $i => $row) {
             foreach ($row as $f => $value) {
-                if ($value > $maxs[$f])
+                if ($value > $maxs[$f]) {
                     $maxs[$f] = $value;
-                if ($value < $mins[$f])
+                }
+                if ($value < $mins[$f]) {
                     $mins[$f] = $value;
+                }
+
                 $sums[$f] += $value;
             }
         }
 
         for ($f = 0; $f < $this->len_features; $f++) {
-            $scaling['mean'][$f] = $sums[$f] / $N;
-            $scaling['variance'][$f] = $maxs[$f] - $mins[$f];
-            if ($scaling['variance'][$f] == 0)
-                throw new Exception("Feature #$f has the same value in all the samples, invalid data");
+            $scalings['mean'][$f] = $sums[$f] / $N;
+            $scalings['variance'][$f] = $maxs[$f] - $mins[$f];
+            if ($scalings['variance'][$f] == 0) {
+                throw new Exception('Feature #$f has the same value in all the samples, invalid data');
+            }
         }
 
-        return $scaling;
+        return $scalings;
     }
 
     public function vector_to_str($x)
     {
-        return '[' . implode(", ", $x) . ']';
+        return '[' . implode(', ', $x) . ']';
     }
 }
