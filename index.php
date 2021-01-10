@@ -93,6 +93,7 @@ printf('Correctness = %.0f%%', $logit->correctness());
 echo PHP_EOL;
 
 echo 'Prediction:';
+echo PHP_EOL;
 
 $preqtest = array(
 

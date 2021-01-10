@@ -44,3 +44,10 @@ Langkah-langkah:
 3. Instansisi Kelas objek
 
 ### Hasil
+![Result](doc/demo.png)
+
+dimana:
+
+- 1 = Kemungkinan akan membeli
+
+- 0 = 'Kemungkinan tidak akan membeli
