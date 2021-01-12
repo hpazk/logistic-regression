@@ -10,9 +10,7 @@ function convert_to_indexed_array($raw_data)
     $num_array = array();
     for ($i = 0; $i < sizeof($raw_data); $i++) {
         $tmp = array();
-        // for ($j = 0; $j < sizeof($raw_data[$i]); $j++) {
-        //     array_push($tmp, $raw_data[$i][$j]);
-        // }
+
         foreach ($raw_data[$i] as $key => $item) {
             $t = $key;
             $t;
@@ -52,35 +50,6 @@ $prequisites = convert_to_indexed_array($prequisites_with_label);
 // print_r($prequisites);
 $expected = getExpectedVariable($raw_data, 'Purchased');
 // print_r($expected);
-
-// data training
-// $prequisites2 = array(
-//     array(-11., 2.6,  1.),
-//     array(8., 0.78, 1.),
-//     array(15., 4.2,  0.),
-//     array(-16., 0.18, 0.),
-//     array(3., 1.1,  0.),
-//     array(7., 1.4,  1.),
-//     array(-3., 1.44, 1.),
-//     array(-7., 0.52, 0.),
-//     array(30., 0.82, 1.),
-//     array(20., 1.32, 0.),
-// );
-// print_r($prequisites2);
-
-// $expected2 = array(
-//     0.,
-//     1.,
-//     0.,
-//     0.,
-//     1.,
-//     1.,
-//     1.,
-//     0.,
-//     0.,
-//     1.0
-// );
-// print_r($expected2);
 
 $raw_data = array();
 $raw_data[0] = $prequisites;

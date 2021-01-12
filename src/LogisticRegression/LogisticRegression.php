@@ -165,7 +165,7 @@ class LogisticRegression
             $scalings['mean'][$f] = $sums[$f] / $N;
             $scalings['variance'][$f] = $maxs[$f] - $mins[$f];
             if ($scalings['variance'][$f] == 0) {
-                throw new Exception('Feature #$f has the same value in all the samples, invalid data');
+                throw new Exception('invalid data');
             }
         }
 

@@ -35,13 +35,23 @@ Seseorang akan membeli setelah melihat iklan sebuah produk.
 
 dataset diambil dari [Social Nework Ads](https://www.kaggle.com/dragonheir/logistic-regression)
 
-Langkah-langkah:
+### Langkah-langkah
 
-1. Sesuaikan data csv secara manual
+### Sesuaikan data csv secara manual
 
-2. Convert csv ke dalam bentuk array
+\
+![Result](doc/csv%20file.png)
+\
 
-3. Instansisi Kelas objek
+### Convert csv ke dalam bentuk array
+
+\
+![Result](doc/csv%20to%20array.png)
+\
+
+### Lakukan klasifikasi dengan program
+
+\
 
 ### Hasil
 
